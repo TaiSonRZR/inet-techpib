@@ -1,16 +1,13 @@
 const express = require("express");
 const path = require("path");
 const port = process.env.PORT || 1870;
-const home = require("./public/index");
 const { appendFile } = require("fs");
 
 const server = express();
 
 //server.use(express.static(path.join(__dirname, "public")));
 
-server.use(express.json());
-
-server.use("/home", home);
+server.use(express.static("public"));
 /*
 server.get('/api/start', (req, res) =>{
   res.sendFile(path.join(__dirname, 'public/quiz.html'))
