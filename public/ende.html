@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer="defer" src="ende.js">
+      const urlParams = new URLSearchParams(window.location.search);
+      const korrektCounter = urlParams.get('korrektCounter');
+      console.log(korrektCounter);
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      p {
+        text-align: center;
+        color: white;
+        font-size: xx-large;
+      }
+      .ergebnis {
+        margin-top: 20%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ergebnis">
+      <p id="ergebnis">xxx</p>
+    </div>
+    <p>
+      <input
+        style="margin-right: 5%"
+        id="nochmal"
+        class="button"
+        type="button"
+        value="Nochmal"
+        onclick="again()"
+      />
+      <input
+        style="margin-left: 5%"
+        id="nochmal"
+        class="button"
+        type="button"
+        value="Hauptmenü"
+        onclick="home()"
+      />
+    </p>
+  </body>
+</html>
