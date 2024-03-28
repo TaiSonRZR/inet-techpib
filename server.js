@@ -7,11 +7,8 @@ const app = express();
 
 //server.use(express.static(path.join(__dirname, "public")));
 
-//app.use(express.static("public"));
+app.use(express.static("public"));
 
-app.get("/home", (req, res) => {
-  res.send("./public/index.html");
-});
 /*
 server.get('/api/start', (req, res) =>{
   res.sendFile(path.join(__dirname, 'public/quiz.html'))
