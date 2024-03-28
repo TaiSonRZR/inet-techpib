@@ -3,18 +3,22 @@ const path = require("path");
 const port = process.env.PORT || 1870;
 const { appendFile } = require("fs");
 
-const server = express();
+const app = express();
 
 //server.use(express.static(path.join(__dirname, "public")));
 
-server.use(express.static("public"));
+//app.use(express.static("public"));
+
+app.get("/", (req, res) => {
+  res.send("./public/index.html");
+});
 /*
 server.get('/api/start', (req, res) =>{
   res.sendFile(path.join(__dirname, 'public/quiz.html'))
 })
 */
 
-server.listen(port, (error) => {
+app.listen(port, (error) => {
   if (error) {
     console.log("Something went wrong", error);
   } else {
