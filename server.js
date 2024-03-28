@@ -1,5 +1,4 @@
 const express = require("express");
-const path = require("path");
 const port = process.env.PORT || 1870;
 const { appendFile } = require("fs");
 
@@ -7,7 +6,11 @@ const app = express();
 
 //server.use(express.static(path.join(__dirname, "public")));
 
-app.use(express.static("public"));
+//app.use(express.static("public"));
+
+app.get("/", (req, res) => {
+  res.send("Hallo");
+});
 
 /*
 server.get('/api/start', (req, res) =>{
