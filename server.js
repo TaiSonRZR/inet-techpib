@@ -31,3 +31,5 @@ server.use((req, res) => {
   res.send("<h1>Error 404: Resource not found</h1>");
 });
 */
+
+module.exports = app;
