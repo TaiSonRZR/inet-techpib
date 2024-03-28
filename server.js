@@ -1,22 +1,15 @@
 const express = require("express");
-const port = process.env.PORT || 1870;
-const { appendFile } = require("fs");
-
 const app = express();
+const port = process.env.PORT || 1870;
 
-//server.use(express.static(path.join(__dirname, "public")));
+
 
 //app.use(express.static("public"));
 
-app.get("/", (req, res) => {
+app.get('/Hallo', (req, res) => {
   res.send("Hallo");
 });
 
-/*
-server.get('/api/start', (req, res) =>{
-  res.sendFile(path.join(__dirname, 'public/quiz.html'))
-})
-*/
 
 app.listen(port, (error) => {
   if (error) {
@@ -25,6 +18,13 @@ app.listen(port, (error) => {
     console.log(`Server is listening http://127.0.0.1:${port}`);
   }
 });
+
+
+/*
+server.get('/api/start', (req, res) =>{
+  res.sendFile(path.join(__dirname, 'public/quiz.html'))
+})
+*/
 /*
 server.use((req, res) => {
   res.status(404);
