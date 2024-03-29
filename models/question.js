@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
     ANSWER - BOOLEAN TRUE OR FALSE
 */
 const questionSchema = new mongoose.Schema({
-  titel: {
+  title: {
     type: String,
     required: true,
   },
