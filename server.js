@@ -18,6 +18,9 @@ db.once("open", () => console.log("Connected to database"));
 
 app.use(express.static("public"));
 
+// API'S
+
+const questionsRouter = require("./routes/questions");
 
 app.listen(3000, () => console.log("Server ready on port 3000."));
 
