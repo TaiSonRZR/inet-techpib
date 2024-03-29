@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const bodyParser = require("body-parser");
 const Question = require("../models/question");
 
+router.use(bodyParser.json());
 //GET ALL QUESTIONS
 router.get("/", async (req, res) => {
   try {
@@ -13,21 +15,12 @@ router.get("/", async (req, res) => {
 });
 
 //GET QUESTION BY ID
-router.get("/:id", async (req, res) => {
-  try {
-    const question = await Question.findById(id);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+router.get("/:id", getQuestion, (req, res) => {});
 
 //CREATE QUESTION
 router.post("/", async (req, res) => {
-  const question = new Question({
-    title: req.body.title,
-    question: req.body.question,
-    answer: req.body.answer
-  });
+  const { title, questionText, answer } = req.body;
+  const question = new Question({ title, questionText, answer });
   try {
     const newQuestion = await question.save();
     res.status(201).json(newQuestion);
@@ -39,5 +32,18 @@ router.post("/", async (req, res) => {
 router.patch("/:id", (req, res) => {});
 //DELETE ONE
 router.delete("/:id", (req, res) => {});
+
+async function getQuestion(req, res, next) {
+  try {
+    question = await Question.findById(req.params.id);
+    if (question == null) {
+      return res.status(404).json({ message: "Cannot find question" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+  res.question = question;
+  next();
+}
 
 module.exports = router;

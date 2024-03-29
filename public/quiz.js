@@ -1,25 +1,12 @@
-const fragen = [
-  { text: "Ist die Sonne heiß?", antwort: true },
-  { text: "Ist Wasser nass?", antwort: true },
-  { text: "Hat ein Hund vier Beine?", antwort: true },
-  { text: "Ist Schnee kalt?", antwort: true },
-  { text: "Kann ein Vogel fliegen?", antwort: true },
-  { text: "Ist die Erde rund?", antwort: true },
-  { text: "Sind Bananen gelb?", antwort: true },
-  { text: "Können Fische schwimmen?", antwort: true },
-  { text: "Ist Zucker süß?", antwort: true },
-  { text: "Ist Gras grün?", antwort: true },
-  { text: "Ist der Himmel pink?", antwort: false },
-  { text: "Ist ein Auto ein Tier?", antwort: false },
-  { text: "Fließt Wasser bergauf?", antwort: false },
-  { text: "Ist der Mond aus Käse?", antwort: false },
-  { text: "Kann ein Fisch Fahrrad fahren?", antwort: false }
+let fragen = [
+  { title: "xxx", questionText: "Frage1", answer: true },
+  { title: "xxx", questionText: "Frage2", answer: true },
 ];
 
 function antwort(x) {
   n++;
-  if (n < anzahlfragen) {
-    if (x == fragen[n].antwort) {
+  if (n < fragen.length) {
+    if (x == fragen[n].answer) {
       korrektCounter++;
     }
     refresh();
@@ -27,16 +14,18 @@ function antwort(x) {
   } else {
     window.location.href = `ende.html?korrektCounter=${korrektCounter}`;
   }
-  
 }
 let n = 0;
 let korrektCounter = 0;
 const anzahlfragen = fragen.length;
 
 function refresh() {
-  document.getElementById("questiontext").innerText = `${fragen[n].text}`;
-  document.getElementById("count").innerText = `Frage ${n+1} von ${anzahlfragen}`;
-  
+  document.getElementById(
+    "questiontext"
+  ).innerText = `${fragen[n].questionText}`;
+  document.getElementById("count").innerText = `Frage ${n + 1} von ${
+    fragen.length
+  }`;
 }
 
 const btn_true = document.getElementById("true");
@@ -45,3 +34,15 @@ refresh();
 
 //document.getElementById("true").addEventListener("click", antwort(true))
 //document.getElementById("false").addEventListener("click", antwort(false))
+
+fetch("http://localhost:3000/questions")
+  .then((res) => res.json()) // Konvertiere die Antwort in JSON
+  .then((data) => {
+    // Handle der empfangenen Daten
+    console.log(data); // Hier kannst du mit den empfangenen Daten arbeiten
+    fragen = data;
+    refresh();
+  })
+  .catch((error) => {
+    console.error("Error:", error); // Handle von Fehlern, falls sie auftreten
+  });
