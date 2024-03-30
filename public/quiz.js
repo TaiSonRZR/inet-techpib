@@ -22,7 +22,7 @@ const anzahlfragen = fragen.length;
 function refresh() {
   document.getElementById(
     "questiontext"
-  ).innerText = `${fragen[n].questionText}`;
+  ).innerText = `${fragen[n].questionText}?`;
   document.getElementById("count").innerText = `Frage ${n + 1} von ${
     fragen.length
   }`;
@@ -35,11 +35,10 @@ refresh();
 //document.getElementById("true").addEventListener("click", antwort(true))
 //document.getElementById("false").addEventListener("click", antwort(false))
 
-fetch("http://localhost:3000/questions")
+fetch("http://localhost:3000/questions/quiz")
   .then((res) => res.json()) // Konvertiere die Antwort in JSON
   .then((data) => {
-    // Handle der empfangenen Daten
-    console.log(data); // Hier kannst du mit den empfangenen Daten arbeiten
+    console.log(data);
     fragen = data;
     refresh();
   })

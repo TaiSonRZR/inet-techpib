@@ -14,6 +14,26 @@ router.get("/", async (req, res) => {
   }
 });
 
+//GET TEN QUIZ QUESTIONS
+router.get("/quiz", async (req, res) => {
+  try {
+    let questions = [];
+
+    const questionsAll = await Question.find();
+
+    while (questions.length !== 10) {
+      let rand = Math.floor(Math.random() * questionsAll.length);
+      let randObj = questionsAll[rand];
+      if (!questions.includes(randObj)) {
+        questions.push(randObj);
+      }
+    }
+    res.json(questions);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 //GET QUESTION BY ID
 router.get("/:id", getQuestion, (req, res) => {});
 
