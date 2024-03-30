@@ -4,10 +4,12 @@ const express = require("express");
 const app = express();
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const mongoose = require("mongoose");
-//const uri = process.env.DATABASE_URL;
+const uri = process.env.DATABASE_URL;
+const client = new MongoClient(uri);
+const PORT = process.env.PORT || 3000
 
 // DATABASE CONNECTION AND SETTINGS
-mongoose.connect(process.env.DATABASE_URL);
+mongoose.connect(uri);
 const db = mongoose.connection;
 db.on("error", (error) => console.error());
 db.once("open", () => console.log("Connected to database"));
@@ -23,6 +25,12 @@ app.use(express.static("public"));
 const questionsRouter = require("./routes/questions");
 app.use("/questions", questionsRouter);
 
-app.listen(3000, () => console.log("Server ready on port 3000."));
+client.connect(err => {
+    if(err){ console.error(err); return false;}
+    // connection to mongo is successful, listen for requests
+    app.listen(PORT, () => {
+        console.log("listening for requests");
+    })
+});
 
 module.exports = app;
