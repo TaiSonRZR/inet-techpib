@@ -35,7 +35,7 @@ refresh();
 //document.getElementById("true").addEventListener("click", antwort(true))
 //document.getElementById("false").addEventListener("click", antwort(false))
 
-fetch("http://localhost:3000/questions/quiz")
+fetch("//https://inet-techpib.vercel.app/questions/quiz")
   .then((res) => res.json()) // Konvertiere die Antwort in JSON
   .then((data) => {
     console.log(data);
