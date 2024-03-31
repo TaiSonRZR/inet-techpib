@@ -8,22 +8,29 @@
     <title>Factcheck</title>
   </head>
   <body>
-    <p style="text-align: left; margin-left: 30px" class="head">
-      <input class="button" id="back" type="button" value="Zurück" />
-    </p>
-    <p>Titel:</p>
-    <p><input type="text" /></p>
-    <p>Fragetext:</p>
-    <p><input type="text" /></p>
-    <p>Antwort:</p>
-    <p>
-      <input id="true" type="radio" value="true" name="answer" />
-      <label for="true">Wahr</label>
-      <input id="false" type="radio" value="false" name="answer" />
-      <label for="false">Falsch</label>
-    </p>
-    <p class="head">
-      <input class="button" id="back" type="button" value="Frage hinzufügen" />
-    </p>
+    <form action="/">
+      <p style="text-align: left; margin-left: 30px" class="head">
+        <input class="button" id="back" type="button" value="Zurück" />
+      </p>
+      <p>Titel:</p>
+      <p><input id="title" name="title" type="text" required/></p>
+      <p>Fragetext:</p>
+      <p><input id="questionText" name="questionText" type="text" required/></p>
+      <p>Antwort:</p>
+      <p>
+        <input id="true" type="radio" value="true" name="answer" required/>
+        <label for="true">Wahr</label>
+        <input id="false" type="radio" value="false" name="answer" />
+        <label for="false">Falsch</label>
+      </p>
+      <p class="head">
+        <input
+          class="button"
+          id="back"
+          type="submit"
+          value="Frage hinzufügen"
+        />
+      </p>
+    </form>
   </body>
 </html>
