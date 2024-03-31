@@ -10,7 +10,7 @@ function handleSubmit(event) {
   let data = Object.fromEntries(formData);
   let jsonData = JSON.stringify(data);
   event.preventDefault();
-  fetch("https://long-red-housecoat.cyclic.app/questions/", {
+  fetch("/questions/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

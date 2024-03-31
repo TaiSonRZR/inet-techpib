@@ -3,7 +3,7 @@ document.getElementById("back").addEventListener("click", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  fetch("http://localhost:3000/questions/")
+  fetch("/questions/")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -34,4 +34,16 @@ function displayData(data) {
     listItem.appendChild(deleteButton);
     list.appendChild(listItem);
   });
+}
+
+function deleteItem(item) {
+  console.log(item);
+  const itemId = item._id;
+  fetch(`/questions/${itemId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  });
+  window.location.reload();
 }
