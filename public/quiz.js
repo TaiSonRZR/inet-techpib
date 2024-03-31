@@ -35,7 +35,7 @@ refresh();
 //document.getElementById("true").addEventListener("click", antwort(true))
 //document.getElementById("false").addEventListener("click", antwort(false))
 
-fetch("https://long-red-housecoat.cyclic.app/questions/quiz")
+fetch("/questions/quiz")
   .then((res) => res.json()) // Konvertiere die Antwort in JSON
   .then((data) => {
     console.log(data);
