@@ -4,11 +4,11 @@ let fragen = [
 ];
 
 function antwort(x) {
-  n++;
   if (n < fragen.length) {
     if (x == fragen[n].answer) {
       korrektCounter++;
     }
+    n++;
     refresh();
     console.log(x, n, fragen[n], korrektCounter);
   } else {
@@ -20,15 +20,12 @@ let korrektCounter = 0;
 const anzahlfragen = fragen.length;
 
 function refresh() {
-  document.getElementById(
-    "questiontext"
-  ).innerText = `${fragen[n].questionText}?`;
-  document.getElementById("count").innerText = `Frage ${n + 1} von ${
-    fragen.length
-  }`;
+  document.getElementById("questiontext").innerText = `${fragen[n].questionText}`;
+  document.getElementById("count").innerText = `Frage ${n + 1} von ${fragen.length}`;
 }
 
 const btn_true = document.getElementById("true");
+const btn_false = document.getElementById("false");
 
 refresh();
 
