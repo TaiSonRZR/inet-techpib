@@ -11,10 +11,23 @@ function handleSubmit(event) {
   let jsonData = JSON.stringify(data);
   event.preventDefault();
   fetch("https://long-red-housecoat.cyclic.app/questions/", {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type' : 'application/json'
+      "Content-Type": "application/json",
     },
-    body: jsonData
+    body: jsonData,
   });
+  alert("Frage erfolgreich hinzugefügt!");
+  clearForm();
+}
+
+function clearForm() {
+  var inputs = form.getElementsByTagName("input");
+  for (var i = 0; i < inputs.length; i++) {
+    if (inputs[i].type === "text") {
+      inputs[i].value = ""; // Leere Texteingabefelder
+    } else if (inputs[i].type === "radio") {
+      inputs[i].checked = false; // Hebe Auswahl der Radio-Buttons auf
+    }
+  }
 }
